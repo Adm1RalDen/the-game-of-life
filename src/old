@@ -1,0 +1,258 @@
+class Cell extends React.Component{
+//   constructor(props) {
+//     super(props);
+//     this.toggleClass = this.toggleClass.bind(this);
+//     this.greenSet = this.greenSet.bind(this);
+//     this.state = { 
+//       active : false,
+//     };
+//   }
+//   toggleClass() {
+//     let currentState = this.state.active;
+//     this.setState({ active: !currentState });
+//     this.props.click(this.props.i, this.props.j);
+//   };
+//   greenSet(){
+//     this.setState = ({
+//       active : true
+//     });
+//   }
+//   render(){
+//     return(
+//       <td 
+//           className={this.props.active ? 'green': null}
+//           onClick={this.toggleClass}
+//       />
+//     );
+//   }
+// }
+
+// class Grid extends React.Component {
+//   constructor(props) {
+//         super(props);
+//         this.toggleClass = this.toggleClass.bind(this);
+//         this.greenSet = this.greenSet.bind(this);
+//       this.changeGridCell = this.changeGridCell.bind(this);
+//         this.state = { 
+//           active : false,
+//         };
+//     }
+//     toggleClass() {
+//         const currentState = this.state.active;
+//         this.setState({ active: !currentState });
+//       };
+//     greenSet(){
+//         this.setState = ({
+//           active : true
+//         });
+//       }
+//     changeGridCell(i, j){
+//      this.props.changeGrid(i, j);
+//     }
+//   render(){
+   
+//     let tableTemplate;
+//     tableTemplate = this.props.BodyState.gridArr.map((row, i) => {
+//         let rowsTemplate;
+//         rowsTemplate = row.map((cols, j) => {
+//           console.log();
+//           return <Cell key={j} active={cols} click={this.changeGridCell} i={i} j={j} />
+//         })
+//         return <tr key={i}>{rowsTemplate}</tr>
+//       })
+//     return(
+//       <table cellSpacing = "0">
+//         <tbody cellSpacing = "0">
+//           {tableTemplate}
+//         </tbody>
+//       </table>
+//     );
+//   }
+// }
+
+// function playGame(arr, temp){
+//   let size = temp.split('x');
+//   let tempArr = arr;
+  
+//   for (let i = size[1] - 1; i !== 0; i--) {
+//     for (let j = size[0] - 1; j !== 0; j--) {
+//     let count = 0;     
+//     let isalive = arr[i][j];
+//                 if (i > 0) if (arr[i - 1][j]) count++;
+//                 if (i > 0 && j > 0) if (arr[i - 1][j - 1]) count++;
+//                 if (i > 0 && j < size[0] - 1) if (arr[i - 1][j + 1]) count++;
+//                 if (j < size[0] - 1) if (arr[i][j + 1]) count++;
+//                 if (j > 0) if (arr[i][j - 1]) count++;
+//                 if (i < size[1] - 1) if (arr[i + 1][j]) count++;
+//                 if (i < size[1] - 1 && j > 0) if (arr[i + 1][j - 1]) count++;
+//                 if (i < size[1] - 1 && size[0]) if (arr[i + 1][j + 1]) count++;
+              
+//                 if (isalive) {
+//                               if (count < 2 || count > 3) {
+//                                   tempArr[i][j] = false;
+//                               }
+//                               else if (count === 2 || count === 3) {
+//                                   tempArr[i][j] = true;
+//                               }
+//                 }else {
+//                               if (count === 3) {
+//                                   tempArr[i][j] = true;
+//                               }
+//                         }
+//             }
+//         }
+//     return tempArr;
+// }
+// function renderClearArr(temp){
+//   let size = temp.split('x');
+//   let tempArr = [];
+//     for(var i = 0; i < size[1]; i++)
+//     {
+//       tempArr[i] = [];
+//       for(var j = 0; j < size[0]; j++)
+//       {
+//         tempArr[i][j] = false;
+//       }
+//     }
+//     return tempArr;
+// }
+
+// function seedGenerations(value){
+//   let size = value.split('x');
+//   let array = [];
+//   for(var i = 0; i < size[1]; i++)
+//   {
+//     array[i] = [];
+//     for(var j = 0; j < size[0]; j++)
+//     {
+//         if (Math.floor(Math.random() * 4) === 1) 
+//         {
+//           array[i][j] = true;
+//         } else {
+//           array[i][j] = false;
+//         }
+//     }
+//   } 
+//  return array;
+// }
+
+// class Body extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { 
+//       sizeGrid : "20x10",
+//       gridArr : renderClearArr('20x10'),
+//       interval : '',
+//       speed : 500,
+//       plays : false,
+//     };
+//     this.handleChange = this.handleChange.bind(this);
+//     this.seedGeneration = this.seedGeneration.bind(this);
+//     this.changeGridFun = this.changeGridFun.bind(this);
+//     this.clearGrid = this.clearGrid.bind(this);
+//     this.play = this.play.bind(this);
+//     this.letsGo = this.letsGo.bind(this);
+//     this.stop = this.stop.bind(this);
+//     this.fast = this.fast.bind(this);
+//     this.slow = this.slow.bind(this);
+//   }
+//   clearGrid(){
+//     let temp = renderClearArr(this.state.sizeGrid);
+//     this.setState({
+//       gridArr : temp,
+//     });
+//   }
+//   handleChange(e){
+//     let temp = renderClearArr(e.target.value);
+//     this.setState({
+//       sizeGrid : e.target.value,
+//       gridArr : temp,
+//     });
+//     }
+//   seedGeneration(){
+//       let temp = seedGenerations(this.state.sizeGrid);
+//       this.setState({
+//         gridArr : temp,
+//       });
+//     }
+//   changeGridFun(i,j){
+//     let temp = this.state.gridArr;
+//     temp[i][j] = !temp[i][j];
+//     this.setState({
+//       gridArr : temp,
+//     });
+//     }
+//     letsGo(){
+//       if(this.state.plays === false){
+//          this.setState({
+//           plays : true,
+//          });
+//          this.timerID = setInterval(
+//           () => this.play(),
+//           this.state.speed
+//         );
+//       } 
+//     }
+//     play(){
+//       // console.log('array', this.state.gridArr);
+//         let temp = playGame(this.state.gridArr, this.state.sizeGrid);
+//          this.setState({
+//           gridArr : temp,
+//          });
+//     }
+//     stop(){
+//       clearInterval(this.timerID);
+//       this.setState({
+//         plays : false
+//       });
+//     }
+//     fast(){
+//       let speeds = this.state.speed;
+//       speeds -= 200;
+//       this.setState({
+//         speed: speeds
+//       });
+//       clearInterval(this.timerID);      
+//       this.timerID = setInterval(
+//         () => this.play(),
+//         this.state.speed
+//       );
+//     }
+//     slow(){
+//       let speeds = this.state.speed;
+//       speeds += 200;
+//       this.setState({
+//         speed: speeds
+//       });
+//       clearInterval(this.timerID);      
+//       this.timerID = setInterval(
+//         () => this.play(),
+//         this.state.speed
+//       );
+//     }
+//   render() {
+//     return (
+//       <div >
+//             <div className="header"><span>The Game of Life</span></div>
+//             <div className="button-menus">
+//                   <div className="button" onClick={this.letsGo}>Play</div>
+//                   <div className="button" onClick={this.stop}>Pause</div>
+//                   <div className="button" onClick={this.clearGrid}>Clear</div>
+//                   <div className="button" onClick={this.slow}>Slow</div>
+//                   <div className="button" onClick={this.fast}>Fast</div>
+//                   <div className="button" onClick={this.seedGeneration}>Seed</div>
+//                   <select className="button " id="changeGrid" size="1" onChange={this.handleChange}>
+//                     <option value="20x10">20x10</option>
+//                     <option value="50x30">50x30</option>
+//                     <option value="70x50">70x50</option>
+//                   </select>
+//             </div>
+//             <div className="grid-main">
+//               <div id="feeld">
+//                 <Grid BodyState = {this.state} changeGrid={this.changeGridFun}/>
+//               </div>
+//             </div>
+//       </div>
+//     );
+//   }
+// }
