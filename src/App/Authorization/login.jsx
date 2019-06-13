@@ -1,7 +1,7 @@
 
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Form, Icon, Input, Button } from 'antd'; 
+import { Form, Icon, Input, Button  } from 'antd'; 
 class NormalLoginForm extends React.Component {
   state = {
     online: false
@@ -15,13 +15,14 @@ class NormalLoginForm extends React.Component {
         if(storage){
           function isAlive(val){
             console.log(val.email + " + " + values.username);
-            return val.email == values.username
+            return val.email === values.username
           }
           if(storage.some(isAlive)){
             this.setState({
               online: true,
             });
             localStorage.setItem('isOnline', 'true');
+            this.props.history.push('/plays');
           }
           else {
             console.log("Користувача не знайдено - ", values);
@@ -33,12 +34,17 @@ class NormalLoginForm extends React.Component {
     
   };
   handeClick = () =>  {
-    console.log(this.props);
+    
+  }
+  handeRegistration = () => {
+    this.props.history.push('/registration');
   }
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form" fun={this.props}>
+      <div >
+        <div className="d1">Welcome</div>
+        <Form onSubmit={this.handleSubmit} className="login-form" fun={this.props}>
         <Form.Item>
           {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!' }],
@@ -64,8 +70,15 @@ class NormalLoginForm extends React.Component {
           <Button type="primary" htmlType="submit" className="login-form-button" onClick={this.handeClick}>
             Log in
           </Button>
+          Or
+          <Button type="link" onClick={this.handeRegistration}>
+          register now!
+          </Button>
         </Form.Item>
       </Form>
+      
+      </div>
+     
     );
   }
 }

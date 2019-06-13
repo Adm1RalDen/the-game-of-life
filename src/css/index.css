@@ -81,12 +81,27 @@ body{
 	width: 100%;
 }
 .content{
+	margin-top: 10vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	height: 100vh;
+	/* height: 100vh; */
 }
 .main-header{
 	background: re
+}
+.button_align{
+	display: flex;
+	justify-content: space-between;
+}
+.d1 {
+	color: #fff;
+	font-size: 5rem;
+	text-align: center;
+	margin-bottom: 1rem;
+}
+
+.exit{
+	border: 1px solid red;
 }

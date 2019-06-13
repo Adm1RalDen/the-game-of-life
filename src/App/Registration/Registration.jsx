@@ -5,50 +5,9 @@ import {
     Input,
     Tooltip,
     Icon,
-
-    Select,
+    message,
     Button,
-    AutoComplete,
-  } from 'antd';
-  
-  const { Option } = Select;
-  const AutoCompleteOption = AutoComplete.Option;
-  
-//   const residences = [
-//     {
-//       value: 'zhejiang',
-//       label: 'Zhejiang',
-//       children: [
-//         {
-//           value: 'hangzhou',
-//           label: 'Hangzhou',
-//           children: [
-//             {
-//               value: 'xihu',
-//               label: 'West Lake',
-//             },
-//           ],
-//         },
-//       ],
-//     },
-//     {
-//       value: 'jiangsu',
-//       label: 'Jiangsu',
-//       children: [
-//         {
-//           value: 'nanjing',
-//           label: 'Nanjing',
-//           children: [
-//             {
-//               value: 'zhonghuamen',
-//               label: 'Zhong Hua Men',
-//             },
-//           ],
-//         },
-//       ],
-//     },
-//   ];
-  
+  } from 'antd';  
   class RegistrationForm extends React.Component {
     state = {
       confirmDirty: false,
@@ -74,9 +33,10 @@ import {
               {
               Reg.push(values);
               localStorage.setItem('registraion', JSON.stringify(Reg));
+              this.props.history.push('/login');
               }
             else {
-              console.log("Не пройшло валідацію - ", values);
+              message.error('Пользователь уже зарегестрирован!');
             }
           }
         }
@@ -114,10 +74,11 @@ import {
       }
       this.setState({ autoCompleteResult });
     };
-  
+    handleBack = () => {
+      this.props.history.goBack();
+    }
     render() {
       const { getFieldDecorator } = this.props.form;
-      const { autoCompleteResult } = this.state;
   
       const formItemLayout = {
         labelCol: {
@@ -141,19 +102,6 @@ import {
           },
         },
       };
-      const prefixSelector = getFieldDecorator('prefix', {
-        initialValue: '86',
-      })(
-        <Select style={{ width: 70 }}>
-          <Option value="86">+86</Option>
-          <Option value="87">+87</Option>
-        </Select>,
-      );
-  
-      const websiteOptions = autoCompleteResult.map(website => (
-        <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-      ));
-  
       return (
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
           <Form.Item label="E-mail">
@@ -210,10 +158,17 @@ import {
               rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
             })(<Input />)}
           </Form.Item>
-          <Form.Item {...tailFormItemLayout}>
+          <Form.Item {...tailFormItemLayout} >
+            <div className='button_align'>
             <Button type="primary" htmlType="submit">
               Register
             </Button>
+            <Button type="danger" onClick={this.handleBack}>
+              <Icon type="left" />
+              Go back
+            </Button>
+            </div>
+            
           </Form.Item>
         </Form>
       );

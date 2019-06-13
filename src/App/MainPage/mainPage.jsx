@@ -5,7 +5,6 @@ class Grid extends React.Component {
       this.changeGridCell = this.changeGridCell.bind(this)
     }
     changeGridCell (i, j) {
-      // console.log(i, j);
       this.props.change(i, j)
     }
     render () {
@@ -22,11 +21,14 @@ class Grid extends React.Component {
         return <tr key={i}>{rowsTemplate}</tr>
       })
       return (
+        <div>
         <table cellSpacing = "0">
           <tbody cellSpacing = "0">
             {tableTemplate}
           </tbody>
         </table>
+        </div>
+       
       )
     }
   }
@@ -167,10 +169,13 @@ class Body extends React.Component {
         speeds
       )
     }
-  
+    handleExit = () => {
+      this.props.history.goBack();
+    }
     render () {
       return (
         <div >
+          
           <div className="header"><span>The Game of Life</span></div>
           <div className="button-menus">
             <div className="button" onClick={this.letsGo}>Play</div>
@@ -184,6 +189,7 @@ class Body extends React.Component {
               <option value="30x50">50x30</option>
               <option value="50x70">70x50</option>
             </select>
+            <div className="button exit" onClick={this.handleExit}>Exit</div>
           </div>
           <div className="grid-main">
             <div id="feeld">
